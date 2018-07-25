@@ -17,7 +17,7 @@
 <meta property="og:description" content="sql约束SQL 约束用于规定表中的数据规则。 如果存在违反约束的数据行为，行为会被约束终止。 约束可以在创建表时规定（通过 CREATE TABLE 语句），或者在表创建之后规定（通过 ALTER TABLE 语句）。">
 <meta property="og:image" content="https://i.imgur.com/UeGUgnv.png">
 <meta property="og:image" content="https://i.imgur.com/JFbrhA1.png">
-<meta property="og:updated_time" content="2018-07-25T08:02:00.427Z">
+<meta property="og:updated_time" content="2018-07-25T08:38:14.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL 约束">
 <meta name="twitter:description" content="sql约束SQL 约束用于规定表中的数据规则。 如果存在违反约束的数据行为，行为会被约束终止。 约束可以在创建表时规定（通过 CREATE TABLE 语句），或者在表创建之后规定（通过 ALTER TABLE 语句）。">
@@ -209,9 +209,8 @@
 <p>下面详细讲解每种约束。</p>
 <h2 id="1-NOT-NULL约束"><a href="#1-NOT-NULL约束" class="headerlink" title="1.NOT NULL约束"></a>1.NOT NULL约束</h2><p>NOT NULL 约束强制列不接受 NULL 值。</p>
 <p>NOT NULL 约束强制字段始终包含值。这意味着，如果不向字段添加值，就无法插入新记录或者更新记录。</p>
-<p>下面的 SQL 强制 “P_Id” 列和 “LastName” 列不接受 NULL 值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE Persons</span><br><span class="line">(</span><br><span class="line">P_Id int NOT NULL,</span><br><span class="line">LastName varchar(255) NOT NULL,</span><br><span class="line">FirstName varchar(255),</span><br><span class="line">Address varchar(255),</span><br><span class="line">City varchar(255)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
-<p>##2.UNIQUE约束 ##</p>
-<p>UNIQUE 约束唯一标识数据库表中的每条记录。</p>
+<p>下面的 SQL 强制 “P_Id” 列和 “LastName” 列不接受 NULL 值：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line">(</span><br><span class="line">P_Id <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">LastName <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">FirstName <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">Address <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">City <span class="built_in">varchar</span>(<span class="number">255</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-UNIQUE约束"><a href="#2-UNIQUE约束" class="headerlink" title="2.UNIQUE约束"></a>2.UNIQUE约束</h2><p>UNIQUE 约束唯一标识数据库表中的每条记录。</p>
 <p>UNIQUE 和 PRIMARY KEY 约束均为列或列集合提供了唯一性的保证。</p>
 <p>PRIMARY KEY 约束拥有自动定义的 UNIQUE 约束。</p>
 <p>请注意，每个表可以有多个 UNIQUE 约束，但是每个表只能有一个 PRIMARY KEY 约束。</p>
@@ -485,7 +484,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sql约束"><span class="toc-number">1.</span> <span class="toc-text">sql约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-NOT-NULL约束"><span class="toc-number">2.</span> <span class="toc-text">1.NOT NULL约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-PRIMARY-KEY-约束"><span class="toc-number">3.</span> <span class="toc-text">3.PRIMARY KEY 约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-FOREIGN-KEY约束"><span class="toc-number">4.</span> <span class="toc-text">4.FOREIGN KEY约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-CHECK约束"><span class="toc-number">5.</span> <span class="toc-text">5.CHECK约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-DEFAULT约束"><span class="toc-number">6.</span> <span class="toc-text">6.DEFAULT约束</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sql约束"><span class="toc-number">1.</span> <span class="toc-text">sql约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-NOT-NULL约束"><span class="toc-number">2.</span> <span class="toc-text">1.NOT NULL约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-UNIQUE约束"><span class="toc-number">3.</span> <span class="toc-text">2.UNIQUE约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-PRIMARY-KEY-约束"><span class="toc-number">4.</span> <span class="toc-text">3.PRIMARY KEY 约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-FOREIGN-KEY约束"><span class="toc-number">5.</span> <span class="toc-text">4.FOREIGN KEY约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-CHECK约束"><span class="toc-number">6.</span> <span class="toc-text">5.CHECK约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-DEFAULT约束"><span class="toc-number">7.</span> <span class="toc-text">6.DEFAULT约束</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -619,11 +618,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">myBlog</a>
+                <a href="javascript:void(0)" class="js-tag color4">sql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sql</a>
+                <a href="javascript:void(0)" class="js-tag color2">myBlog</a>
               </li>
             
             <div class="clearfix"></div>
