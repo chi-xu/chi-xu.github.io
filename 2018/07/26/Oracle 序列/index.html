@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://chi-xu.github.com">
   <title>Oracle 序列 | I just believe it.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、序列　　序列是oracle用来生产一组等间隔的数值。序列是递增，而且连续的。oracle主键没有自增类型，所以一般使用序列产生的值作为某张表的主键,实现主键自增。序列的编号不是在插入记录的时候自动生成的，必须调用序列的方法来生成（一般调用nextval方法）。我们也可以编写表的insert触发器来进自动生成。 创建语法：1234567create sequence 序列名称[start wit">
+  <meta name="description" content="一、序列　　序列是oracle用来生产一组等间隔的数值。序列是递增，而且连续的。oracle主键没有自增类型，所以一般使用序列产生的值作为某张表的主键,实现主键自增。序列的编号不是在插入记录的时候自动生成的，必须调用序列的方法来生成（一般调用nextval方法）。我们也可以编写表的insert触发器来进自动生成。">
 <meta name="keywords" content="学习,sql,序列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Oracle 序列">
 <meta property="og:url" content="http://chi-xu.github.com/2018/07/26/Oracle 序列/index.html">
 <meta property="og:site_name" content="I just believe it.">
-<meta property="og:description" content="一、序列　　序列是oracle用来生产一组等间隔的数值。序列是递增，而且连续的。oracle主键没有自增类型，所以一般使用序列产生的值作为某张表的主键,实现主键自增。序列的编号不是在插入记录的时候自动生成的，必须调用序列的方法来生成（一般调用nextval方法）。我们也可以编写表的insert触发器来进自动生成。 创建语法：1234567create sequence 序列名称[start wit">
-<meta property="og:updated_time" content="2018-07-26T08:01:02.380Z">
+<meta property="og:description" content="一、序列　　序列是oracle用来生产一组等间隔的数值。序列是递增，而且连续的。oracle主键没有自增类型，所以一般使用序列产生的值作为某张表的主键,实现主键自增。序列的编号不是在插入记录的时候自动生成的，必须调用序列的方法来生成（一般调用nextval方法）。我们也可以编写表的insert触发器来进自动生成。">
+<meta property="og:updated_time" content="2018-07-26T08:08:50.093Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle 序列">
-<meta name="twitter:description" content="一、序列　　序列是oracle用来生产一组等间隔的数值。序列是递增，而且连续的。oracle主键没有自增类型，所以一般使用序列产生的值作为某张表的主键,实现主键自增。序列的编号不是在插入记录的时候自动生成的，必须调用序列的方法来生成（一般调用nextval方法）。我们也可以编写表的insert触发器来进自动生成。 创建语法：1234567create sequence 序列名称[start wit">
+<meta name="twitter:description" content="一、序列　　序列是oracle用来生产一组等间隔的数值。序列是递增，而且连续的。oracle主键没有自增类型，所以一般使用序列产生的值作为某张表的主键,实现主键自增。序列的编号不是在插入记录的时候自动生成的，必须调用序列的方法来生成（一般调用nextval方法）。我们也可以编写表的insert触发器来进自动生成。">
   
     <link rel="alternative" href="/atom.xml" title="I just believe it." type="application/atom+xml">
   
@@ -189,7 +189,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、序列"><a href="#一、序列" class="headerlink" title="一、序列"></a>一、序列</h2><p>　　序列是oracle用来生产一组等间隔的数值。序列是递增，而且连续的。oracle主键没有自增类型，所以一般使用序列产生的值作为某张表的主键,实现主键自增。序列的编号不是在插入记录的时候自动生成的，必须调用序列的方法来生成（一般调用nextval方法）。我们也可以编写表的insert触发器来进自动生成。</p>
+        <h2 id="一、序列"><a href="#一、序列" class="headerlink" title="一、序列"></a>一、序列</h2><p>　　序列是oracle用来生产一组等间隔的数值。序列是递增，而且连续的。oracle主键没有自增类型，所以一般使用序列产生的值作为某张表的主键,实现主键自增。序列的编号不是在插入记录的时候自动生成的，必须调用序列的方法来生成（一般调用nextval方法）。我们也可以编写表的insert触发器来进自动生成。<br><a id="more"></a></p>
 <p>创建语法：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">sequence</span> 序列名称</span><br><span class="line">[<span class="keyword">start</span> <span class="keyword">with</span> 初始量] </span><br><span class="line">[<span class="keyword">increment</span> <span class="keyword">by</span> 递增量] </span><br><span class="line">[maxvalue 最大值| <span class="keyword">nomaxvalue</span>] </span><br><span class="line">[<span class="keyword">minvalue</span> 最小值| <span class="keyword">nominvalue</span>] </span><br><span class="line">[<span class="keyword">cycle</span> | <span class="keyword">nocycle</span>] </span><br><span class="line">[<span class="keyword">cache</span> 缓存个数| nocache];</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>start with：生成第一个序列号,对于升序列,其默认值为序列最小值;对于降序序列,其默认值为序列的最大值 。<br>increment by：用于指定序列号之间的间隔,其默认值为1,如果integer为正值,则生成的序列按升序排列,如果integer为负值,则生成的序列将按降序排列。</li>
@@ -504,19 +504,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">序列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">myBlog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -525,6 +513,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">yilia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">序列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">myBlog</a>
               </li>
             
             <div class="clearfix"></div>
