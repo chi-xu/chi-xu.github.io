@@ -268,8 +268,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>“Where” 是一个约束声明，使用Where来约束来自数据库的数据，Where是在结果返回之前起作用的，且Where中不能使用聚合函数。</p>
-<p>“Having”是一个过滤声明，是在查询返回结果集以后对查询结果进行的过滤操作，在Having中可以使用聚合函数。<br>
+        <p>“Where” 是一个约束声明，使用Where来约束来自数据库的数据，Where是在结果返回之前起作用的，且Where中不能使用聚合函数。<br><br>“Having”是一个过滤声明，是在查询返回结果集以后对查询结果进行的过滤操作，在Having中可以使用聚合函数。<br>
         
       
 
@@ -607,12 +606,6 @@
         <p><strong>本文介绍的是用不蒜子计数，十分简单，而且我用的是yilia主题，所以以该主题来介绍。，其他主题大同小异。</strong></p>
 <h2 id="1、引入不蒜子"><a href="#1、引入不蒜子" class="headerlink" title="1、引入不蒜子"></a>1、引入不蒜子</h2><p>代码如下：  </p>
 <pre><code>&lt;script async src=&quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
-</code></pre><p>在/themes/yilia/layout/_partial/footer.ejs里面加上上面的代码.  </p>
-<h2 id="2、添加文章访问量"><a href="#2、添加文章访问量" class="headerlink" title="2、添加文章访问量"></a>2、添加文章访问量</h2><pre><code>&lt;% if ( !index ){ %&gt;
-    &lt;span class=&quot;archive-article-date&quot;&gt;
-    阅读量:&lt;span id=&quot;busuanzi_value_page_pv&quot;&gt;&lt;/span&gt;
-    &lt;/span&gt;
-&lt;% } %&gt;
 </code></pre>
         
       
@@ -699,7 +692,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Class类的使用"><a href="#Class类的使用" class="headerlink" title="Class类的使用"></a>Class类的使用</h3><p>在面向对象的世界里，万事万物皆对象<br>类也是对象，类是java.lang.Class类的实例对象<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> flynee;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建Foo类的实例</span></span><br><span class="line">		Foo foo1 = <span class="keyword">new</span> Foo();</span><br><span class="line"></span><br><span class="line">		<span class="comment">//Foo 这个类也是一个实例对象，Class类的实例对象</span></span><br><span class="line">		<span class="comment">//任何一个类都是Class的实例对象，这个实例对象有三种表示方式</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//第一种--&gt;告诉我们任何一个类都有一个隐含的静态成员变量class</span></span><br><span class="line">		Class c1 = Foo.class;</span><br><span class="line">		<span class="comment">//第二种  已知该类的对象通过getClass方法</span></span><br><span class="line">		Class c2 = foo1.getClass();</span><br><span class="line">		<span class="comment">//官网称c1,c2为Foo类的类类型（class type）</span></span><br><span class="line">		<span class="comment">//输出结果为true，一个类只有一个类类型</span></span><br><span class="line">		System.out.println(c1==c2);</span><br></pre></td></tr></table></figure></p>
+        <h3 id="Class类的使用"><a href="#Class类的使用" class="headerlink" title="Class类的使用"></a>Class类的使用</h3><p>在面向对象的世界里，万事万物皆对象<br>类也是对象，类是java.lang.Class类的实例对象<br>
         
       
 
@@ -939,19 +932,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">sql</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">序列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
               <li class="article-tag-list-item">

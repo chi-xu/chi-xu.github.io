@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://chi-xu.github.com">
   <title>Hexo yilia主题博客添加网站访问量功能 | I just believe it.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文介绍的是用不蒜子计数，十分简单，而且我用的是yilia主题，所以以该主题来介绍。，其他主题大同小异。 1、引入不蒜子代码如下：   &amp;lt;script async src=&amp;quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; 在/themes/yilia/layout/">
+  <meta name="description" content="本文介绍的是用不蒜子计数，十分简单，而且我用的是yilia主题，所以以该主题来介绍。，其他主题大同小异。 1、引入不蒜子代码如下：   &amp;lt;script async src=&amp;quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;">
 <meta name="keywords" content="学习,hexo,yilia">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo yilia主题博客添加网站访问量功能">
 <meta property="og:url" content="http://chi-xu.github.com/2018/02/08/yilia主题添加网站访问量/index.html">
 <meta property="og:site_name" content="I just believe it.">
-<meta property="og:description" content="本文介绍的是用不蒜子计数，十分简单，而且我用的是yilia主题，所以以该主题来介绍。，其他主题大同小异。 1、引入不蒜子代码如下：   &amp;lt;script async src=&amp;quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; 在/themes/yilia/layout/">
-<meta property="og:updated_time" content="2018-02-08T13:18:48.000Z">
+<meta property="og:description" content="本文介绍的是用不蒜子计数，十分简单，而且我用的是yilia主题，所以以该主题来介绍。，其他主题大同小异。 1、引入不蒜子代码如下：   &amp;lt;script async src=&amp;quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;">
+<meta property="og:updated_time" content="2018-07-26T11:55:10.548Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo yilia主题博客添加网站访问量功能">
-<meta name="twitter:description" content="本文介绍的是用不蒜子计数，十分简单，而且我用的是yilia主题，所以以该主题来介绍。，其他主题大同小异。 1、引入不蒜子代码如下：   &amp;lt;script async src=&amp;quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; 在/themes/yilia/layout/">
+<meta name="twitter:description" content="本文介绍的是用不蒜子计数，十分简单，而且我用的是yilia主题，所以以该主题来介绍。，其他主题大同小异。 1、引入不蒜子代码如下：   &amp;lt;script async src=&amp;quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;">
   
     <link rel="alternative" href="/atom.xml" title="I just believe it." type="application/atom+xml">
   
@@ -192,14 +192,14 @@
         <p><strong>本文介绍的是用不蒜子计数，十分简单，而且我用的是yilia主题，所以以该主题来介绍。，其他主题大同小异。</strong></p>
 <h2 id="1、引入不蒜子"><a href="#1、引入不蒜子" class="headerlink" title="1、引入不蒜子"></a>1、引入不蒜子</h2><p>代码如下：  </p>
 <pre><code>&lt;script async src=&quot;//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
-</code></pre><p>在/themes/yilia/layout/_partial/footer.ejs里面加上上面的代码.  </p>
+</code></pre><a id="more"></a>
+<p>在/themes/yilia/layout/_partial/footer.ejs里面加上上面的代码.  </p>
 <h2 id="2、添加文章访问量"><a href="#2、添加文章访问量" class="headerlink" title="2、添加文章访问量"></a>2、添加文章访问量</h2><pre><code>&lt;% if ( !index ){ %&gt;
     &lt;span class=&quot;archive-article-date&quot;&gt;
     阅读量:&lt;span id=&quot;busuanzi_value_page_pv&quot;&gt;&lt;/span&gt;
     &lt;/span&gt;
 &lt;% } %&gt;
-</code></pre><a id="more"></a>
-<p>打开/themes/yilia/layout/_partial/article.ejs，在header标签里的日期后面加上上面的代码。<br>为了极简以及美观，每篇文章的阅读量不在首页显示，只有在打开某篇文章时才会显示。</p>
+</code></pre><p>打开/themes/yilia/layout/_partial/article.ejs，在header标签里的日期后面加上上面的代码。<br>为了极简以及美观，每篇文章的阅读量不在首页显示，只有在打开某篇文章时才会显示。</p>
 <h2 id="3、添加站点访问量"><a href="#3、添加站点访问量" class="headerlink" title="3、添加站点访问量"></a>3、添加站点访问量</h2><pre><code>&lt;span id=&quot;busuanzi_container_site_uv&quot;&gt;
      本站访客数:&lt;span id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt; 人次
 &lt;/span&gt;
@@ -491,19 +491,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">sql</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">序列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
               <li class="article-tag-list-item">
