@@ -160,6 +160,133 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Oracle 序列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/26/Oracle 序列/">Oracle 序列</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/26/Oracle 序列/" class="archive-article-date">
+  	<time datetime="2018-07-26T07:51:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-26</time>
+</a>
+        
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、序列"><a href="#一、序列" class="headerlink" title="一、序列"></a>一、序列</h2><p>　　序列是oracle用来生产一组等间隔的数值。序列是递增，而且连续的。oracle主键没有自增类型，所以一般使用序列产生的值作为某张表的主键,实现主键自增。序列的编号不是在插入记录的时候自动生成的，必须调用序列的方法来生成（一般调用nextval方法）。我们也可以编写表的insert触发器来进自动生成。</p>
+<p>创建语法：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">sequence</span> 序列名称</span><br><span class="line">[<span class="keyword">start</span> <span class="keyword">with</span> 初始量] </span><br><span class="line">[<span class="keyword">increment</span> <span class="keyword">by</span> 递增量] </span><br><span class="line">[maxvalue 最大值| <span class="keyword">nomaxvalue</span>] </span><br><span class="line">[<span class="keyword">minvalue</span> 最小值| <span class="keyword">nominvalue</span>] </span><br><span class="line">[<span class="keyword">cycle</span> | <span class="keyword">nocycle</span>] </span><br><span class="line">[<span class="keyword">cache</span> 缓存个数| nocache];</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>start with：生成第一个序列号,对于升序列,其默认值为序列最小值;对于降序序列,其默认值为序列的最大值 。<br>increment by：用于指定序列号之间的间隔,其默认值为1,如果integer为正值,则生成的序列按升序排列,如果integer为负值,则生成的序列将按降序排列。</li>
+</ul>
+<ul>
+<li>maxvalue：序列可以生成的最大值。</li>
+</ul>
+<ul>
+<li>nomaxvalue：oracle将升序序列的最大值设为1027,将降序序列的最大值设为-1.这是默认选项。</li>
+</ul>
+<ul>
+<li>minvalue：minvalue必须小于或等于start with的值,并且必须小于maxvalue的值。</li>
+</ul>
+<ul>
+<li>nominvalue：oracle将升序的最小值设为1,或将降序序列的最小值设为-1026.这是默认值。</li>
+</ul>
+<ul>
+<li>cycle：序列在达到最大值或最小值后,将继续从头开始生成值。</li>
+</ul>
+<ul>
+<li>nocycle：序列在达到最大值或最小值后,将不能再继续生成值。不写默认为nocycle这是默认选项 。</li>
+</ul>
+<ul>
+<li>cache：预先分配一组序列号,并将其保留在内存中,这样可以更快地访问序列号.当用完缓存中的所有序列号.oracle将生成另一组数值,并将其保留在缓存中。</li>
+</ul>
+<ul>
+<li>nocache：不会加快访问速度而预先分配序列号,如果在创建序列时忽略了cache和nocache,orcale将默认缓存20个序列号。</li>
+</ul>
+<p>修改语法：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">sequence</span> 序列名称</span><br><span class="line">[<span class="keyword">start</span> <span class="keyword">with</span> 初始量] </span><br><span class="line">[<span class="keyword">increment</span> <span class="keyword">by</span> 递增量] </span><br><span class="line">[maxvalue 最大值| <span class="keyword">nomaxvalue</span>] </span><br><span class="line">[<span class="keyword">minvalue</span> 最小值| <span class="keyword">nominvalue</span>] </span><br><span class="line">[<span class="keyword">cycle</span> | <span class="keyword">nocycle</span>] </span><br><span class="line">[<span class="keyword">cache</span> 缓存个数| nocache];</span><br></pre></td></tr></table></figure></p>
+<h2 id="二、例子"><a href="#二、例子" class="headerlink" title="二、例子"></a>二、例子</h2><p> 　　以下代码person表如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> person ;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> person (</span><br><span class="line"><span class="keyword">id</span> <span class="built_in">NUMBER</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> ,</span><br><span class="line">username VARCHAR2(<span class="number">255</span> ) <span class="literal">NULL</span> ,</span><br><span class="line">age <span class="built_in">NUMBER</span>(<span class="number">11</span>) <span class="literal">NULL</span> ,</span><br><span class="line"><span class="keyword">password</span> VARCHAR2(<span class="number">255</span>) <span class="literal">NULL</span> ,</span><br><span class="line">PRIMARY <span class="keyword">KEY</span> (<span class="keyword">id</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>　　创建序列<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">sequence</span> seq_tb_person</span><br><span class="line"><span class="keyword">minvalue</span> <span class="number">1</span></span><br><span class="line">maxvalue <span class="number">999999999999999999999999999</span></span><br><span class="line"><span class="keyword">start</span> <span class="keyword">with</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">increment</span> <span class="keyword">by</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">cache</span> <span class="number">20</span>;</span><br></pre></td></tr></table></figure></p>
+<p>　　使用序列</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> person (<span class="keyword">id</span>, username, age, <span class="keyword">password</span>) <span class="keyword">values</span> (seq_tb_person.nextval, <span class="string">'张三'</span>, <span class="number">20</span>, <span class="string">'zhang123'</span>)</span><br></pre></td></tr></table></figure>
+<p>我们也可以通过建立触发器，当有数据插入表person时，使用oracle序列为其去的递增的主键值<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建触发器</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">trigger</span> trigger_set_person_id <span class="keyword">before</span> <span class="keyword">insert</span> <span class="keyword">on</span> person</span><br><span class="line"><span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">select</span> seq_tb_person.nextval <span class="keyword">into</span> :new.id <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"><span class="comment">-- 插入数据</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> person ( username, age, <span class="keyword">password</span>) <span class="keyword">values</span> (<span class="string">'张三'</span>, <span class="number">20</span>, <span class="string">'zhang123'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>　　修改序列<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">sequence</span> seq_tb_person</span><br><span class="line"><span class="keyword">minvalue</span> <span class="number">1</span></span><br><span class="line">maxvalue <span class="number">999999999999999999999999999</span></span><br><span class="line"><span class="comment">-- start with 49 对于已经启动的序列，无法设置初始值</span></span><br><span class="line"><span class="keyword">increment</span> <span class="keyword">by</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">cache</span> <span class="number">20</span>;</span><br></pre></td></tr></table></figure></p>
+<p>　　查看用户的序列：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sequence_name, min_value, max_value, increment_by, last_number <span class="keyword">from</span> user_sequences;</span><br></pre></td></tr></table></figure></p>
+<p>　　删除序列<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">sequence</span> 序列名;</span><br></pre></td></tr></table></figure></p>
+<p>　　通过USER_OBJECTS可以查看用户拥有的序列，USER_SEQUENCES可以查看序列的设置。</p>
+<p>三、注意点</p>
+<p>一个序列可以被多张别使用，不过一般建议为每个表建立单独的序列。<br>当使用到序列的事务发生回滚。会造成序列号不连续。在用生成的序列值作为编号做插入数据库操作时，可能遇到事务提交失败，从而导致序号不连续。<br>大量语句发生请求，申请序列时，为了避免序列在运用层实现序列而引起的性能瓶颈。Oracle序列允许将序列提前生成 n个先存入内存，在发生大量申请序列语句时，可直接到运行最快的内存中去得到序列。但cache个数最好不要设置过大，因为在数据库重启时，会清空内存信息，预存在内存中的序列会丢失，当数据库再次启动后，序列从上次内存中最大的序列号+1 开始存入n个。这种情况也能会在数据库关闭时也会导致序号不连续。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">sql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">序列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/26/Oracle 序列/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+  
     <article id="post-sql where和having区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -849,7 +976,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">序列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">myBlog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -858,14 +997,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">yilia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">myBlog</a>
               </li>
             
             <div class="clearfix"></div>
