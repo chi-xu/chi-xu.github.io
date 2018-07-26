@@ -163,27 +163,28 @@
     <article id="post-sql where和having区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/26/sql where和having区别/">SQL中where和having区别</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/26/sql where和having区别/" class="archive-article-date">
+  	<time datetime="2018-07-26T03:35:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-26</time>
+</a>
+        
+        
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <p>“Where” 是一个约束声明，使用Where来约束来自数据库的数据，Where是在结果返回之前起作用的，且Where中不能使用聚合函数。</p>
-<p>“Having”是一个过滤声明，是在查询返回结果集以后对查询结果进行的过滤操作，在Having中可以使用聚合函数。</p>
-<p>在说区别之前，得先介绍GROUP BY这个子句，而在说GROUP子句前，又得先说说“聚合函数”——SQL语言中一种特殊的函数。例如SUM, COUNT, MAX, AVG等。这些函数和其它函数的根本区别就是它们一般作用在多条记录上。</p>
-<p>如：<br>SELECT SUM(population) FROM vv_t_bbc ;</p>
-<p>　　这里的SUM作用在所有返回记录的population字段上，结果就是该查询只返回一个结果，即所有国家的总人口数。</p>
-<p>　 　而通过使用GROUP BY 子句，可以让SUM 和 COUNT 这些函数对属于一组的数据起作用。当你指定 GROUP BY region 时，只有属于同一个region（地区）的一组数据才将返回一行值，也就是说，表中所有除region（地区）外的字段，只能通过 SUM, COUNT等聚合函数运算后返回一个值。</p>
-<p>   下面再说说“HAVING”和“WHERE”：</p>
-<p>　　HAVING子句可以让我们筛选成组后的各组数据，WHERE子句在聚合前先筛选记录．也就是说作用在GROUP BY 子句和HAVING子句前；而 HAVING子句在聚合后对组记录进行筛选。</p>
-<p>　　让我们还是通过具体的实例来理解GROUP BY 和 HAVING 子句：</p>
-<p>　　SQL实例：</p>
-<p>　　一、显示每个地区的总人口数和总面积：</p>
-<p>SELECT region, SUM(population), SUM(area)<br>FROM bbc<br>GROUP BY region</p>
-<p>　　先以region把返回记录分成多个组，这就是GROUP BY的字面含义。分完组后，然后用聚合函数对每组中的不同字段（一或多条记录）作运算。</p>
-<p>　　二、显示每个地区的总人口数和总面积．仅显示那些人口数量超过1000000的地区。</p>
-<p>SELECT region, SUM(population), SUM(area)<br>FROM bbc<br>GROUP BY region<br>HAVING SUM(population)&gt;1000000</p>
-<p>[注]　　在这里，我们不能用where来筛选超过1000000的地区，因为表中不存在这样一条记录。</p>
-<p>　　相反，HAVING子句可以让我们筛选成组后的各组数据．</p>
-<p>ps:如果想根据sum后的字段进行排序可以在后面加上：order by sum(population) desc/asc</p>
-
+<p>“Having”是一个过滤声明，是在查询返回结果集以后对查询结果进行的过滤操作，在Having中可以使用聚合函数。<br>
+        
       
 
       
@@ -848,15 +849,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">myBlog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -865,6 +858,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">yilia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">myBlog</a>
               </li>
             
             <div class="clearfix"></div>

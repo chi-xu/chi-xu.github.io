@@ -17,7 +17,7 @@
 <meta property="og:description" content="sql约束SQL 约束用于规定表中的数据规则。 如果存在违反约束的数据行为，行为会被约束终止。 约束可以在创建表时规定（通过 CREATE TABLE 语句），或者在表创建之后规定（通过 ALTER TABLE 语句）。">
 <meta property="og:image" content="https://i.imgur.com/UeGUgnv.png">
 <meta property="og:image" content="https://i.imgur.com/JFbrhA1.png">
-<meta property="og:updated_time" content="2018-07-25T09:05:13.452Z">
+<meta property="og:updated_time" content="2018-07-26T06:22:00.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL 约束">
 <meta name="twitter:description" content="sql约束SQL 约束用于规定表中的数据规则。 如果存在违反约束的数据行为，行为会被约束终止。 约束可以在创建表时规定（通过 CREATE TABLE 语句），或者在表创建之后规定（通过 ALTER TABLE 语句）。">
@@ -214,7 +214,7 @@
 <p>UNIQUE 和 PRIMARY KEY 约束均为列或列集合提供了唯一性的保证。</p>
 <p>PRIMARY KEY 约束拥有自动定义的 UNIQUE 约束。</p>
 <p>请注意，每个表可以有多个 UNIQUE 约束，但是每个表只能有一个 PRIMARY KEY 约束。</p>
-<p><strong><em>(1)CREATE TABLE 时的 SQL UNIQUE 约束</em></strong></p>
+<p><strong>(1)CREATE TABLE 时的 SQL UNIQUE 约束</strong></p>
 <p>下面的 SQL 在 “Persons” 表创建时在 “P_Id” 列上创建 UNIQUE 约束：</p>
 <p><strong>MySQL</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line">(</span><br><span class="line">P_Id <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">LastName <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">FirstName <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">Address <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">City <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line"><span class="keyword">UNIQUE</span> (P_Id)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
@@ -223,14 +223,14 @@
 <p>如需命名 UNIQUE 约束，并定义多个列的 UNIQUE 约束，请使用下面的 SQL 语法：</p>
 <p><strong>MySQL / SQL Server / Oracle / MS Access：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line">(</span><br><span class="line">P_Id <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">LastName <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">FirstName <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">Address <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">City <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line"><span class="keyword">CONSTRAINT</span> uc_PersonID <span class="keyword">UNIQUE</span> (P_Id,LastName)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p><strong><em>(2)ALTER TABLE 时的 SQL UNIQUE 约束</em></strong></p>
+<p><strong>(2)ALTER TABLE 时的 SQL UNIQUE 约束</strong></p>
 <p>当表已被创建时，如需在 “P_Id” 列创建 UNIQUE 约束，请使用下面的 SQL：</p>
 <p><strong>MySQL / SQL Server / Oracle / MS Access：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> (P_Id)</span><br></pre></td></tr></table></figure>
 <p>如需命名 UNIQUE 约束，并定义多个列的 UNIQUE 约束，请使用下面的 SQL 语法：</p>
 <p><strong>MySQL / SQL Server / Oracle / MS Access：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> uc_PersonID <span class="keyword">UNIQUE</span> (P_Id,LastName)</span><br></pre></td></tr></table></figure>
-<p><strong><em>(3)撤销 UNIQUE 约束</em></strong></p>
+<p><strong>(3)撤销 UNIQUE 约束</strong></p>
 <p>如需撤销 UNIQUE 约束，请使用下面的 SQL：</p>
 <p><strong>MySQL：</strong><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">INDEX</span> uc_PersonID</span><br></pre></td></tr></table></figure></p>
 <p><strong>SQL Server / Oracle / MS Access：</strong></p>
@@ -239,7 +239,7 @@
 <p>主键必须包含唯一的值。</p>
 <p>主键列不能包含 NULL 值。</p>
 <p>每个表都应该有一个主键，并且每个表只能有一个主键。</p>
-<p><strong><em>(1)CREATE TABLE 时的 SQL PRIMARY KEY 约束</em></strong></p>
+<p><strong>(1)CREATE TABLE 时的 SQL PRIMARY KEY 约束</strong></p>
 <p>下面的 SQL 在 “Persons” 表创建时在 “P_Id” 列上创建 PRIMARY KEY 约束：</p>
 <p><strong>MySQL</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line">(</span><br><span class="line">P_Id <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">LastName <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">FirstName <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">Address <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">City <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">PRIMARY <span class="keyword">KEY</span>  (P_Id)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
@@ -249,7 +249,7 @@
 <p><strong>MySQL / SQL Server / Oracle / MS Access：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line">(</span><br><span class="line">P_Id <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">LastName <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">FirstName <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">Address <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">City <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line"><span class="keyword">CONSTRAINT</span> pk_PersonID PRIMARY <span class="keyword">KEY</span> (P_Id,LastName)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>注释：在上面的实例中，只有一个主键 PRIMARY KEY（pk_PersonID）。然而，pk_PersonID 的值是由两个列（P_Id 和 LastName）组成的。</p>
-<p><strong><em>(2)ALTER TABLE 时的 SQL PRIMARY KEY 约束</em></strong></p>
+<p><strong>(2)ALTER TABLE 时的 SQL PRIMARY KEY 约束</strong></p>
 <p>当表已被创建时，如需在 “P_Id” 列创建 PRIMARY KEY 约束，请使用下面的 SQL：</p>
 <p><strong>MySQL / SQL Server / Oracle / MS Access：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line"><span class="keyword">ADD</span> PRIMARY <span class="keyword">KEY</span> (P_Id)</span><br></pre></td></tr></table></figure>
@@ -257,7 +257,7 @@
 <p><strong>MySQL / SQL Server / Oracle / MS Access：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> uc_PersonID PRIMARY <span class="keyword">KEY</span> (P_Id,LastName)</span><br></pre></td></tr></table></figure>
 <p>注释：如果您使用 ALTER TABLE 语句添加主键，必须把主键列声明为不包含 NULL 值（在表首次创建时）。</p>
-<p><strong><em>(3)撤销 PRIMARY KEY 约束</em></strong></p>
+<p><strong>(3)撤销 PRIMARY KEY 约束</strong></p>
 <p>如需撤销 PRIMARY KEY 约束，请使用下面的 SQL：</p>
 <p><strong>MySQL：</strong><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line"><span class="keyword">DROP</span> PRIMARY <span class="keyword">KEY</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>SQL Server / Oracle / MS Access：</strong></p>
@@ -273,7 +273,7 @@
 <p>“Orders” 表中的 “P_Id” 列是 “Orders” 表中的 FOREIGN KEY。</p>
 <p>FOREIGN KEY 约束用于预防破坏表之间连接的行为。</p>
 <p>FOREIGN KEY 约束也能防止非法数据插入外键列，因为它必须是它指向的那个表中的值之一</p>
-<p><strong><em>(1)CREATE TABLE 时的 SQL PRIMARY KEY 约束</em></strong></p>
+<p><strong>(1)CREATE TABLE 时的 SQL PRIMARY KEY 约束</strong></p>
 <p>下面的 SQL 在 “Orders” 表创建时在 “P_Id” 列上创建 FOREIGN KEY 约束：</p>
 <p><strong>MySQL</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Orders</span><br><span class="line">(</span><br><span class="line">O_Id <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">OrderNo <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">P_Id <span class="built_in">int</span>,</span><br><span class="line">PRIMARY <span class="keyword">KEY</span> (O_Id),</span><br><span class="line">FOREIGN <span class="keyword">KEY</span> (P_Id) <span class="keyword">REFERENCES</span> Persons(P_Id)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
@@ -282,13 +282,13 @@
 <p>如需命名 FOREIGN KEY 约束，并定义多个列的 FOREIGN KEY 约束，请使用下面的 SQL 语法：</p>
 <p><strong>MySQL / SQL Server / Oracle / MS Access：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Orders</span><br><span class="line">(</span><br><span class="line">O_Id <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">OrderNo <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">P_Id <span class="built_in">int</span>,</span><br><span class="line">PRIMARY <span class="keyword">KEY</span> (O_Id),</span><br><span class="line"><span class="keyword">CONSTRAINT</span> fk_PerOrders FOREIGN <span class="keyword">KEY</span> (P_Id)</span><br><span class="line"><span class="keyword">REFERENCES</span> Persons(P_Id)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p><strong><em>(2)ALTER TABLE 时的 SQL FOREIGN KEY 约束</em></strong></p>
+<p><strong>(2)ALTER TABLE 时的 SQL FOREIGN KEY 约束</strong></p>
 <p>当 “Orders” 表已被创建时，如需在 “P_Id” 列创建 FOREIGN KEY 约束，请使用下面的 SQL：</p>
 <p><strong>MySQL / SQL Server / Oracle / MS Access：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Orders</span><br><span class="line"><span class="keyword">ADD</span> FOREIGN <span class="keyword">KEY</span> (P_Id)</span><br><span class="line"><span class="keyword">REFERENCES</span> Persons(P_Id)</span><br></pre></td></tr></table></figure>
 <p>如需命名 FOREIGN KEY 约束，并定义多个列的 FOREIGN KEY 约束，请使用下面的 SQL 语法：<br><strong>MySQL / SQL Server / Oracle / MS Access：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Orders</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_PerOrders</span><br><span class="line">FOREIGN <span class="keyword">KEY</span> (P_Id)</span><br><span class="line"><span class="keyword">REFERENCES</span> Persons(P_Id)</span><br></pre></td></tr></table></figure>
-<p><strong><em>(3)撤销 FOREIGN KEY 约束</em></strong></p>
+<p><strong>(3)撤销 FOREIGN KEY 约束</strong></p>
 <p>如需撤销 FOREIGN KEY 约束，请使用下面的 SQL：</p>
 <p><strong>MySQL：</strong><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Orders</span><br><span class="line"><span class="keyword">DROP</span> FOREIGN <span class="keyword">KEY</span> fk_PerOrders</span><br></pre></td></tr></table></figure></p>
 <p><strong>SQL Server / Oracle / MS Access：</strong></p>
@@ -296,7 +296,7 @@
 <h2 id="5-CHECK约束"><a href="#5-CHECK约束" class="headerlink" title="5.CHECK约束"></a>5.CHECK约束</h2><p>CHECK 约束用于限制列中的值的范围。</p>
 <p>如果对单个列定义 CHECK 约束，那么该列只允许特定的值。</p>
 <p>如果对一个表定义 CHECK 约束，那么此约束会基于行中其他列的值在特定的列中对值进行限制。</p>
-<p><strong><em>(1)CREATE TABLE 时的 SQL CHECK 约束</em></strong></p>
+<p><strong>(1)CREATE TABLE 时的 SQL CHECK 约束</strong></p>
 <p>下面的 SQL 在 “Persons” 表创建时在 “P_Id” 列上创建 CHECK 约束。CHECK 约束规定 “P_Id” 列必须只包含大于 0 的整数</p>
 <p><strong>MySQL</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line">(</span><br><span class="line">P_Id <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">LastName <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">FirstName <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">Address <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">City <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line"><span class="keyword">CHECK</span> (P_Id&gt;<span class="number">0</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
@@ -305,26 +305,26 @@
 <p>如需命名 CHECK 约束，并定义多个列的 CHECK 约束，请使用下面的 SQL 语法：</p>
 <p><strong>MySQL / SQL Server / Oracle / MS Access：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line">(</span><br><span class="line">P_Id <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">LastName <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">FirstName <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">Address <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">City <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line"><span class="keyword">CONSTRAINT</span> chk_Person <span class="keyword">CHECK</span> (P_Id&gt;<span class="number">0</span> <span class="keyword">AND</span> City=<span class="string">'Sandnes'</span>)</span><br></pre></td></tr></table></figure>
-<p><strong><em>(2)ALTER TABLE 时的 SQL CHECK 约束</em></strong></p>
+<p><strong>(2)ALTER TABLE 时的 SQL CHECK 约束</strong></p>
 <p>当表已被创建时，如需在 “P_Id” 列创建 CHECK 约束，请使用下面的 SQL</p>
 <p><strong>MySQL / SQL Server / Oracle / MS Access：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CHECK</span> (P_Id&gt;<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
 <p>如需命名 CHECK 约束，并定义多个列的 CHECK 约束，请使用下面的 SQL 语法：<br><strong>MySQL / SQL Server / Oracle / MS Access：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> chk_Person <span class="keyword">CHECK</span> (P_Id&gt;<span class="number">0</span> <span class="keyword">AND</span> City=<span class="string">'Sandnes'</span>)</span><br></pre></td></tr></table></figure>
-<p><strong><em>(3)撤销 CHECK 约束</em></strong></p>
+<p><strong>(3)撤销 CHECK 约束</strong></p>
 <p>如需撤销 CHECK 约束，请使用下面的 SQL：</p>
 <p><strong>MySQL：</strong><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">CHECK</span> chk_Person</span><br></pre></td></tr></table></figure></p>
 <p><strong>SQL Server / Oracle / MS Access：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> chk_Person</span><br></pre></td></tr></table></figure>
 <h2 id="6-DEFAULT约束"><a href="#6-DEFAULT约束" class="headerlink" title="6.DEFAULT约束"></a>6.DEFAULT约束</h2><p>DEFAULT 约束用于向列中插入默认值。</p>
 <p>如果没有规定其他的值，那么会将默认值添加到所有的新记录。</p>
-<p><strong><em>(1)CREATE TABLE 时的 SQL DEFAULT 约束</em></strong></p>
+<p><strong>(1)CREATE TABLE 时的 SQL DEFAULT 约束</strong></p>
 <p>下面的 SQL 在 “Persons” 表创建时在 “City” 列上创建 DEFAULT 约束：</p>
 <p><strong>MySQL/SQL Server / Oracle / MS Access：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line">(</span><br><span class="line">P_Id <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">LastName <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">FirstName <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">Address <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">City <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="string">'Sandnes'</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>通过使用类似 GETDATE() 这样的函数，DEFAULT 约束也可以用于插入系统值：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Orders</span><br><span class="line">(</span><br><span class="line">O_Id <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">OrderNo <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">P_Id <span class="built_in">int</span>,</span><br><span class="line">OrderDate <span class="built_in">date</span> <span class="keyword">DEFAULT</span> <span class="keyword">GETDATE</span>()</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p><strong><em>(2)ALTER TABLE 时的 SQL DEFAULT 约束</em></strong></p>
+<p><strong>(2)ALTER TABLE 时的 SQL DEFAULT 约束</strong></p>
 <p>当表已被创建时，如需在 “City” 列创建 DEFAULT 约束，请使用下面的 SQL：</p>
 <p><strong>MySQL：</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line"><span class="keyword">ALTER</span> City <span class="keyword">SET</span> <span class="keyword">DEFAULT</span> <span class="string">'SANDNES'</span></span><br></pre></td></tr></table></figure>
@@ -332,7 +332,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> City <span class="keyword">SET</span> <span class="keyword">DEFAULT</span> <span class="string">'SANDNES'</span></span><br></pre></td></tr></table></figure>
 <p><strong>Oracle</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line"><span class="keyword">MODIFY</span> City <span class="keyword">DEFAULT</span> <span class="string">'SANDNES'</span></span><br></pre></td></tr></table></figure>
-<p><strong><em>(3)撤销 DEFAULT 约束</em></strong></p>
+<p><strong>(3)撤销 DEFAULT 约束</strong></p>
 <p>如需撤销 DEFAULT 约束，请使用下面的 SQL：</p>
 <p><strong>MySQL：</strong><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons</span><br><span class="line"><span class="keyword">ALTER</span> City <span class="keyword">DROP</span> <span class="keyword">DEFAULT</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>SQL Server / Oracle / MS Access：</strong></p>
@@ -459,7 +459,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          SQL中where和having区别
         
       </div>
     </a>
@@ -615,15 +615,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">myBlog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -632,6 +624,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">yilia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">myBlog</a>
               </li>
             
             <div class="clearfix"></div>
